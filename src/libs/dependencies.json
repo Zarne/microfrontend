@@ -1,0 +1,19 @@
+{
+  "react": {
+    "name": "react",
+    "version": "19.0.0"
+  },
+  "react-dom/client": {
+    "name": "react-dom/client",
+    "version": "19.0.0"
+  },
+  "@mui/material": {
+    "name": "@mui/material",
+    "version": "^7.1.0"
+  },
+  "@module-federation/enhanced": {
+    "name": "@module-federation/enhanced",
+    "version": "0.13.1",
+    "shared": false
+  }
+}

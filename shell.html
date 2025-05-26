@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shell</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="http://localhost:3002/remoteEntry.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@19.1.0",
+          "react-dom": "https://esm.sh/react-dom@19.1.0",
+          "react-dom/client": "https://esm.sh/react-dom@19.1.0/client"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+        <header>
+            <h1>Shell</h1>
+        </header>
+        <main>
+            
+          <div id="root"></div>
+
+        </main>
+        <footer>
+            <p>&copy; 2023 Shell Application</p>
+        </footer>
+    </div>
+
+    <script type="text/babel" data-type="module" >  
+
+        import React, { lazy } from "react"; // → https://esm.sh/react@19.1.0
+        import { createRoot } from "react-dom/client"; // → https://esm.sh/react-dom@19.1.0/client
+        //import { importRemote } from 'https://unpkg.com/@module-federation/utilities/dist/index.esm.js';
+        import { importRemote } from "https://unpkg.com/module-federation-import-remote@1.1.0/dist/esm/index.js";
+
+        (async () => {
+        
+          const Equipes = lazy(() => importRemote({ 
+            url: "http://localhost:3002", 
+            scope: 'yarum_components', 
+            module: './equipes' }));
+
+          await yarum_components.init();
+          const equipes = (await yarum_components.get("./equipes"))()
+          const operations = (await yarum_components.get("./operations"))()
+          console.log(equipes);
+          
+        const domContainer = document.querySelector('#root');
+        const root = createRoot(domContainer);
+        const EquipesComponent = equipes.Equipes;
+        const MyContext = React.createContext({ value: "Initial value" });
+      
+        root.render(<>
+          <MyContext.Provider value={{ value: "Updated value" }}>
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <operations.Operations />
+              <EquipesComponent />
+            </React.Suspense>
+          </MyContext.Provider>
+                    </>);
+          
+        })();
+    </script>
+  </body>
+</html>

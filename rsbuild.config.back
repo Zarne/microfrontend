@@ -1,0 +1,42 @@
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
+import getSharedDependencies from './src/libs/shared-dependencies';
+
+const { dependencies } = require('./package.json');
+
+export default defineConfig({
+  server: {
+    port: 3000,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
+  plugins: [
+    pluginReact(),
+  
+    pluginModuleFederation({
+      name: 'yarum_equipes',
+      library: { type: 'var', name: 'yarum_components' },
+      
+      exposes: {
+        './equipes': './src/components/equipes/equipes.tsx',
+        './operations': './src/components/equipes/operations.tsx',
+      },
+      filename: 'remoteEntry.js',
+      
+      shared: { 
+        react: { 
+          singleton: true, 
+          eager: true,
+          requiredVersion: dependencies.react
+        }, 
+        "react-dom": {
+          singleton: true,
+          eager: true,
+          requiredVersion: dependencies['react-dom']
+        },
+
+      },
+    }),],
+});
