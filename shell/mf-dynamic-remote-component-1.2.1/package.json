@@ -1,0 +1,38 @@
+{
+  "name": "mf-dynamic-remote-component",
+  "version": "1.2.1",
+  "description": "Library for loading in dynamic remote components when utilizing webpack Module Federation",
+  "main": "public/main.js",
+  "browser": "public/browser.js",
+  "files": [
+    "./public"
+  ],
+  "scripts": {
+    "test": "test",
+    "build": "rollup -c",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:michaeldurfey/mf-dynamic-remote-component.git"
+  },
+  "keywords": [
+    "module",
+    "federation",
+    "webpack"
+  ],
+  "author": "michaeldurfey",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/preset-env": "^7.16.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "eslint": "^8.2.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.27.0",
+    "rollup": "^2.60.1",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

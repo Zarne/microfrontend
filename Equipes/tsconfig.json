@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "preserveConstEnums": true,
+    "declaration": true,
+    "noEmit": true,
+    "strictNullChecks": true,
+    "jsx": "react",
+	  "noImplicitAny": false,
+    
+    "baseUrl": "./",
+    "paths": {
+      "@/": ["./src"],
+      "@/*": ["./src/*"],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@views": ["src/views"],
+      "@views/*": ["src/views/*"],
+    }
+  },
+  "include": [ "src" ],
+  "exclude": [ "node_modules" ],
+  "files": [
+        "src/index.d.ts"
+    ]
+
+  
+}
