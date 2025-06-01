@@ -26,15 +26,19 @@ function Fallback({ error, resetErrorBoundary }: FallbackProps) {
     </div>
   );
 }
-const EquipesWrapper: FunctionComponent<{name: string, baseBreadcrumbs: Bread[], parentOverlay:  RefObject<HTMLDivElement | null>}> = (props) => {
+const EquipesWrapper: FunctionComponent<{name: string, baseBreadcrumbs: Bread[]}> = (props) => {
+  
+    const opRef = React.createRef<HTMLDivElement>();
   
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <ErrorBoundary FallbackComponent={Fallback}>
-          <Equipes name={props.name} baseBreadcrumbs={props.baseBreadcrumbs} parentOverlay={props.parentOverlay} />
-        </ErrorBoundary>
-      </QueryClientProvider>
+      <div className="operator" ref={opRef}>
+        <QueryClientProvider client={queryClient}>
+          <ErrorBoundary FallbackComponent={Fallback}>
+            <Equipes baseBreadcrumbs={props.baseBreadcrumbs} parentOverlay={opRef} />
+          </ErrorBoundary>
+        </QueryClientProvider>
+      </div>
     </>
   );
 }

@@ -26,6 +26,7 @@ const PlanningsConf = {
 const parentElementId = 'equipe';
 
 
+    const crombs = [{name: "Accueil", url: "/"}, {name: "Equipe", url: "/equipes"}];
     const Fallback = () => <div>Le composants n'a pas pu être chargé</div>;
     
     const App = () => {
@@ -40,7 +41,7 @@ const parentElementId = 'equipe';
                 
         }, []);
 
-        const MyComponent = React.lazy(() => getModuleComponent(PlanningsConf, Fallback, {name: "Equipes"}));
+        const MyComponent = React.lazy(() => getModuleComponent(PlanningsConf, Fallback, {baseBreadcrumbs: crombs}));
 
         return (
             <div>

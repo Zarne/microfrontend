@@ -10,7 +10,7 @@ import { LuActivity } from 'react-icons/lu';
 
 const UserEditDrawer = React.lazy(() => import('./UserEditDrawer'));
 
-const Equipes: FunctionComponent<{name: string, baseBreadcrumbs: Bread[], parentOverlay:  RefObject<HTMLDivElement | null>}> = (props) => {
+const Equipes: FunctionComponent<{baseBreadcrumbs: Bread[], parentOverlay:  RefObject<HTMLDivElement | null>}> = (props) => {
   const [userAddVisible, setUserAddVisible] = useState(false);
   const [userId, setUserId] = useState<string | undefined>();
   const breadcrumbs = [...props.baseBreadcrumbs, ...[{name: "Operateurs", url: "/equipes/operateurs"}]] as Bread[];
