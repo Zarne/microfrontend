@@ -3,8 +3,6 @@ declare module '*.jpg';
 
 declare module '*.tsx';
 
-declare enum RoleOperator { admin, arhcitect, exploit }
-declare var Role: typeof Operator
 declare type Operator = { 
     _id: string,
     name: string,
@@ -13,4 +11,9 @@ declare type Operator = {
     email: string,
     updated_at: Date,
     created_at: Date
+ };
+
+ declare type Bread = {
+    name: string,
+    url: string
  };

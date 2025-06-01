@@ -4,7 +4,7 @@ import {
   QueryClient,
   QueryClientProvider
 } from '@tanstack/react-query';
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, RefObject } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import Equipes from './Equipes';
 
@@ -26,13 +26,13 @@ function Fallback({ error, resetErrorBoundary }: FallbackProps) {
     </div>
   );
 }
-const EquipesWrapper: FunctionComponent<{name: string}> = (props) => {
+const EquipesWrapper: FunctionComponent<{name: string, baseBreadcrumbs: Bread[], parentOverlay:  RefObject<HTMLDivElement | null>}> = (props) => {
   
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary FallbackComponent={Fallback}>
-          <Equipes name={props.name} />
+          <Equipes name={props.name} baseBreadcrumbs={props.baseBreadcrumbs} parentOverlay={props.parentOverlay} />
         </ErrorBoundary>
       </QueryClientProvider>
     </>

@@ -13,15 +13,17 @@ import {
 const { worker } = require('@/mock/browser');
 worker.start();
 
-
+const crombs = [{name: "Accueil", url: "/"}, {name: "Equipe", url: "/equipes"}] as Bread[];
 const queryClient = new QueryClient()
 const App: FunctionComponent = () => {
 
+  
+  const opRef = React.createRef<HTMLDivElement>();
+
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="operator">
-        <Equipes name="Equipes"/>
-        <Plannings name="Equipes"/>
+      <div className="operator" ref={opRef}>
+        <Equipes name="Equipes" baseBreadcrumbs={crombs} parentOverlay={opRef} />
       </div>
     </QueryClientProvider>
   );
