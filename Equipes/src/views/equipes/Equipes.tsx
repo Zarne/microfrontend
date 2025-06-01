@@ -1,16 +1,16 @@
 "use client"
 
-import { CirclePlus, Stethoscope } from 'lucide-react';
-import React, { FunctionComponent, RefObject, useState } from "react";
-import { Breadcrumb, Button } from 'react-bootstrap';
-import UsersTable from './UsersTable';
 import ButtonAction from '@/components/ui/ButtonAction';
-import { LuActivity } from 'react-icons/lu';
+import { Stethoscope } from 'lucide-react';
+import React, { FunctionComponent, RefObject, useState } from "react";
+import { Breadcrumb } from 'react-bootstrap';
+import UsersTable from './UsersTable';
+import { QueryClient } from '@tanstack/react-query';
 
 
 const UserEditDrawer = React.lazy(() => import('./UserEditDrawer'));
 
-const Equipes: FunctionComponent<{baseBreadcrumbs: Bread[], parentOverlay:  RefObject<HTMLDivElement | null>}> = (props) => {
+const Equipes: FunctionComponent<{baseBreadcrumbs: Bread[], parentOverlay:  RefObject<HTMLDivElement | null>, client: QueryClient}> = (props) => {
   const [userAddVisible, setUserAddVisible] = useState(false);
   const [userId, setUserId] = useState<string | undefined>();
   const breadcrumbs = [...props.baseBreadcrumbs, ...[{name: "Operateurs", url: "/equipes/operateurs"}]] as Bread[];
@@ -38,7 +38,7 @@ const Equipes: FunctionComponent<{baseBreadcrumbs: Bread[], parentOverlay:  RefO
 
       {userAddVisible && 
             <React.Suspense fallback={<div>Loading...</div>}>
-                <UserEditDrawer show={userAddVisible} setter={editUser} id={userId!} parentOverlay={props.parentOverlay} />
+                <UserEditDrawer show={userAddVisible} setter={editUser} id={userId!} parentOverlay={props.parentOverlay} client={props.client} />
             </React.Suspense>
       }
     </>

@@ -8,7 +8,8 @@ import React, { FunctionComponent, RefObject } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import Equipes from './Equipes';
 
-console.log(React.version);
+import '@/styles/index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /// chargement du mock des objects
 const { worker } = require('@/mock/browser');
@@ -26,7 +27,7 @@ function Fallback({ error, resetErrorBoundary }: FallbackProps) {
     </div>
   );
 }
-const EquipesWrapper: FunctionComponent<{name: string, baseBreadcrumbs: Bread[]}> = (props) => {
+const EquipesWrapper: FunctionComponent<{baseBreadcrumbs: Bread[]}> = (props) => {
   
     const opRef = React.createRef<HTMLDivElement>();
   
@@ -35,7 +36,7 @@ const EquipesWrapper: FunctionComponent<{name: string, baseBreadcrumbs: Bread[]}
       <div className="operator" ref={opRef}>
         <QueryClientProvider client={queryClient}>
           <ErrorBoundary FallbackComponent={Fallback}>
-            <Equipes baseBreadcrumbs={props.baseBreadcrumbs} parentOverlay={opRef} />
+            <Equipes baseBreadcrumbs={props.baseBreadcrumbs} parentOverlay={opRef} client={queryClient} />
           </ErrorBoundary>
         </QueryClientProvider>
       </div>

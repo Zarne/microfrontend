@@ -34,23 +34,14 @@ const parentElementId = 'equipe';
 
             getModuleService(EquipesInjectorConf, Fallback)
                 .then(equipesInject => {
-                    const equipe = equipesInject(document.getElementById(parentElementId));
+                    const equipe = equipesInject(document.getElementById(parentElementId), crombs);
                     equipe.render();
                     return () => equipe.unmount();
                 })
                 
         }, []);
 
-        const MyComponent = React.lazy(() => getModuleComponent(PlanningsConf, Fallback, {baseBreadcrumbs: crombs}));
-
-        return (
-            <div>
-            <h1>Host Application - React Version {React.version}</h1>
-            <h2>App 1</h2>
-            <div id={parentElementId}></div>
-
-            </div>
-            );
+        return (<div id={parentElementId}></div>);
 
     };
 

@@ -17,7 +17,7 @@ const handleEdit = (editor, id) => {
 const UsersTable: FunctionComponent<{editor: (visible: boolean, id?: string) => void}> = (props) => {
 
     const { isLoading, isError, data: users } = useQuery({
-        queryKey: ['repoData'],
+        queryKey: ['repoDataUsers'],
         queryFn: () =>
         fetch('/users').then((res) =>
             res.json(),
@@ -41,8 +41,6 @@ const UsersTable: FunctionComponent<{editor: (visible: boolean, id?: string) => 
     
     return (
         <>
-        <div>Users</div>
-        
         <Table striped bordered hover>
         <thead>
             <tr>
@@ -56,6 +54,8 @@ const UsersTable: FunctionComponent<{editor: (visible: boolean, id?: string) => 
         <tbody>
              {isLoading ? 
                 (<>
+                <TrSkeleton />
+                <TrSkeleton />
                 <TrSkeleton />
                 <TrSkeleton />
                 </>) : 

@@ -23,7 +23,7 @@ const App: FunctionComponent = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="operator" ref={opRef}>
-        <Equipes name="Equipes" baseBreadcrumbs={crombs} parentOverlay={opRef} />
+        <Equipes baseBreadcrumbs={crombs} parentOverlay={opRef} client={queryClient} />
       </div>
     </QueryClientProvider>
   );
